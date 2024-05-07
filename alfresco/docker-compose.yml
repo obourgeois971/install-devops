@@ -35,7 +35,7 @@ services:
       - alfresco-postgres:/var/lib/postgresql/data
 
   solr6:
-    image: alfresco/alfresco-search-services:latest
+    image: alfresco/alfresco-search-services:1.6.0
     container_name: solr6
     restart: always
     environment:
