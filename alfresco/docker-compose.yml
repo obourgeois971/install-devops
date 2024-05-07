@@ -19,6 +19,8 @@ services:
       - '8080:8080'
     volumes:
       - alfresco-content:/usr/local/tomcat/alf_data
+      - ./alfresco-global.properties:/usr/local/tomcat/shared/classes/alfresco-global.properties:ro
+      - ./postgresql-connector.jar:/usr/local/tomcat/lib/postgresql-connector.jar
     depends_on:
       - postgres
       - solr6
