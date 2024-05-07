@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  alfresco:
+    image: alfresco/alfresco-content-repository-community:latest
+    container_name: alfresco
+    restart: always
+    environment:
+      - DB_KIND=postgresql
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USERNAME=alfresco
+      - DB_PASSWORD=admin
+      - DB_NAME=alfresco
+      - SOLR_HOST=solr6
+      - SOLR_PORT=8983
+      - INDEX_SUBSYSTEM=solr6
+    ports:
+      - '8080:8080'
+    volumes:
+      - alfresco-content:/usr/local/tomcat/alf_data
+    depends_on:
+      - postgres
+      - solr6
+
+  postgres:
+    image: postgres:12
+    container_name: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=alfresco
+      - POSTGRES_USER=alfresco
+      - POSTGRES_PASSWORD=admin
+    volumes:
+      - alfresco-postgres:/var/lib/postgresql/data
+
+  solr6:
+    image: alfresco/alfresco-search-services:latest
+    container_name: solr6
+    restart: always
+    environment:
+      - SOLR_ALFRESCO_HOST=alfresco
+      - SOLR_ALFRESCO_PORT=8080
+      - SOLR_CORE_NAME=alfresco
+    ports:
+      - '8983:8983'
+    volumes:
+      - alfresco-search-services-data:/opt/alfresco-search-services/data
+
+volumes:
+  alfresco-content:
+  alfresco-postgres:
+  alfresco-search-services-data:
