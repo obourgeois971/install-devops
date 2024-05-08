@@ -1,18 +1,42 @@
-version: '3'
+version: '3.8'
+
 services:
   traefik:
-    image: traefik
-    command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
+    image: traefik:v2.5
+    command:
+      - '--api.insecure=true'
+      - '--providers.docker=true'
+      - '--providers.docker.exposedbydefault=false'
     ports:
       - '80:80'
-      - '8080:8080'
       - '443:443'
+      - '8080:8080' # Port for the Traefik dashboard
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /dev/null:/traefik.toml
-    networks:
-      - webgateway
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
 
-networks:
-  webgateway:
-    driver: bridge
+  service1:
+    image: georgespasov/docker-jenkins:latest
+    volumes:
+      - jenkins_data:/var/jenkins_home
+    networks:
+      - sonarnet
+    ports:
+      - '8080:8080'
+      - '50000:50000'
+    privileged: true
+    restart: always
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.service1.rule=Host(`service1.yourdomain.com`)'
+      - 'traefik.http.services.service1.loadbalancer.server.port=80'
+
+  service2:
+    container_name: mail-dev-bsn
+    image: maildev/maildev
+    ports:
+      - 1080:1080
+      - 1025:1025
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.service2.rule=Host(`service2.yourdomain.com`)'
+      - 'traefik.http.services.service2.loadbalancer.server.port=80'
