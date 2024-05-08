@@ -9,6 +9,8 @@
 #
 # Using version 2 as 3 does not support resource constraint options
 # (cpu_*, mem_* limits) for non swarm mode in Compose
+# https://raw.githubusercontent.com/Alfresco/acs-deployment/master/docker-compose/community-docker-compose.yml
+# console : 192.168.150.4:8080/share/page/repository#filter=path%7C%2FUser%2520Homes%2Ffbousquet&page=1
 version: '2'
 services:
   alfresco:
