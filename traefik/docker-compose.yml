@@ -40,3 +40,6 @@ services:
       - 'traefik.enable=true'
       - 'traefik.http.routers.service2.rule=Host(`service2.yourdomain.com`)'
       - 'traefik.http.services.service2.loadbalancer.server.port=80'
+
+volumes:
+  jenkins_data:
