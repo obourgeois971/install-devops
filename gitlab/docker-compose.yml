@@ -8,7 +8,7 @@ services:
     hostname: 'gitlab.example.com' # Modifier selon votre domaine
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://gitlab.example.com' # Modifier selon votre domaine
+        external_url 'http://192.168.160.4' # Modifier selon votre domaine
     ports:
       - '80:80'
       - '443:443'
