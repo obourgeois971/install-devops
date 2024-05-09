@@ -29,15 +29,18 @@ services:
       - 'traefik.http.services.service1.loadbalancer.server.port=80'
 
   service2:
-    container_name: mail-dev-bsn
-    image: maildev/maildev
+    image: georgespasov/docker-jenkins:latest
+    volumes:
+      - jenkins_data:/var/jenkins_home
     ports:
-      - 1080:1080
-      - 1025:1025
+      - '8080:8080'
+      - '50000:50000'
+    privileged: true
+    restart: always
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.service2.rule=Host(`service2.yourdomain.com`)'
-      - 'traefik.http.services.service2.loadbalancer.server.port=80'
+      - 'traefik.http.routers.service1.rule=Host(`service1.yourdomain.com`)'
+      - 'traefik.http.services.service1.loadbalancer.server.port=80'
 
 volumes:
   jenkins_data:
