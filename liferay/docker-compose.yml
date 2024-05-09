@@ -2,12 +2,12 @@ version: '3.7'
 
 services:
   liferay:
-    image: liferay/portal:7.3.10-ga1
+    image: liferay/portal:7.3.9-ga1
     ports:
       - '8080:8080'
     volumes:
-      - ./data:/usr/local/liferay-ce-portal-7.3.10-ga1/data
-      - ./deploy:/usr/local/liferay-ce-portal-7.3.10-ga1/deploy
+      - ./data:/usr/local/liferay-ce-portal-7.3.9-ga1/data
+      - ./deploy:/usr/local/liferay-ce-portal-7.3.9-ga1/deploy
     environment:
       - JAVA_OPTS=-Dfile.encoding=UTF8 -Duser.timezone=GMT -Xmx2048m
-      - LIFERAY_HOME=/usr/local/liferay-ce-portal-7.3.10-ga1
+      - LIFERAY_HOME=/usr/local/liferay-ce-portal-7.3.9-ga1
