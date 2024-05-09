@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  gitlab:
+    image: 'gitlab/gitlab-ce:latest'
+    container_name: 'gitlab'
+    restart: always
+    hostname: 'gitlab.example.com' # Modifier selon votre domaine
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://gitlab.example.com' # Modifier selon votre domaine
+    ports:
+      - '80:80'
+      - '443:443'
+      - '22:22'
+    volumes:
+      - '/srv/gitlab/config:/etc/gitlab'
+      - '/srv/gitlab/logs:/var/log/gitlab'
+      - '/srv/gitlab/data:/var/opt/gitlab'
