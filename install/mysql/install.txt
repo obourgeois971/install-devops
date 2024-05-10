@@ -1,0 +1,18 @@
+sudo apt-get install mysql-server
+
+sudo mysql
+
+mysql> CREATE USER 'YOUR_USERNAME_HERE'@`%` IDENTIFIED BY 'YOUR_PASSWORD_IN_PLAIN_TEXT_HERE';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'YOUR_USERNAME_HERE'@`%`WITH GRANT OPTION;
+
+mysql > FLUSH PRIVILEGES;
+mysql > exit
+
+sudo vim /etc/mysql/my.cnf
+
+[mysqld]
+bind-address = 0.0.0.0
+
+sudo service mysql restart
+
+mysql -V
