@@ -17,3 +17,7 @@ networks:
 
 volumes:
   jenkins_home:
+
+  # docker exec -it jenkins /bin/bash
+  # cd /var/jenkins_home/secrets/
+  # cat initialAdminPassword
