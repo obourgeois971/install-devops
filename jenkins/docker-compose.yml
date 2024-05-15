@@ -20,4 +20,6 @@ volumes:
 
   # docker exec -it jenkins /bin/bash
   # cd /var/jenkins_home/secrets/
-  # cat initialAdminPassword
+  # cat /var/jenkins_home/secrets/initialAdminPassword
+
+  # sudo docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
