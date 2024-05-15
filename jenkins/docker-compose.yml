@@ -9,7 +9,7 @@ services:
       - '50000:50000'
     volumes:
       - jenkins_home:/var/jenkins_home
-    networks:
+    networks:e
       - jenkinsnet
 
 networks:
