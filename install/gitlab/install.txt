@@ -2,9 +2,11 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-gi
 sudo apt update
 sudo apt install ca-certificates curl openssh-server postfix tzdata perl
 select Internet Site
-Install GitLAb
+
+Install GitLab
 cd /tmp
 curl -LO https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
+
 Verifier le script suivant:
 less /tmp/script.deb.sh
 lancer le script suivant:
