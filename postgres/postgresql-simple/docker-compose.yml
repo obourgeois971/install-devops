@@ -7,4 +7,4 @@ services:
       - POSTGRES_PASSWORD=codecake
       - POSTGRES_USER=codecake
     ports:
-      - 192.168.150.4:5432:5432
+      - '192.168.150.4:5432:5432'
