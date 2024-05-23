@@ -1,13 +1,28 @@
+version: '3.8'
+
 services:
-  postgres:
-    image: 'mysql:latest'
-    restart: always
-    volumes:
-      - mysql_data:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=essai
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=root
+  mysql:
+    image: mysql:8.0 # Utilisez la version souhaitée de MySQL
+    container_name: mysql-container
     ports:
-      - '192.168.150.4:3306:3306'
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: root # Remplacez par le mot de passe root souhaité
+      MYSQL_DATABASE: example_db # Nom de la base de données initiale (optionnel)
+      MYSQL_USER: root # Nom d'utilisateur (optionnel)
+      MYSQL_PASSWORD: root # Mot de passe de l'utilisateur (optionnel)
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - mysql-network
+
+networks:
+  mysql-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.150.0/24
+          gateway: 192.168.150.1
+
+volumes:
+  mysql-data:
