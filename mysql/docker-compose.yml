@@ -1,28 +1,17 @@
-version: '3.8'
+version: "3.8"
 
 services:
   mysql:
-    image: mysql:8.0 # Utilisez la version souhaitée de MySQL
-    container_name: mysql-container
-    ports:
-      - '3306:3306'
+    image: mysql:latest
+    container_name: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root # Remplacez par le mot de passe root souhaité
-      MYSQL_DATABASE: example_db # Nom de la base de données initiale (optionnel)
-      MYSQL_USER: root # Nom d'utilisateur (optionnel)
-      MYSQL_PASSWORD: root # Mot de passe de l'utilisateur (optionnel)
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: student # Ajouter cette ligne pour créer la base de données 'student'
+    ports:
+      - "3306:3306"
     volumes:
-      - mysql-data:/var/lib/mysql
-    networks:
-      - mysql-network
-
-networks:
-  mysql-network:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 192.168.150.0/24
-          gateway: 192.168.150.1
+      - mysql_data:/var/lib/mysql
+      - ./my.cnf:/etc/mysql/my.cnf
 
 volumes:
-  mysql-data:
+  mysql_data:
