@@ -7,7 +7,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: student # Ajouter cette ligne pour créer la base de données 'student'
+      MYSQL_DATABASE: student
     ports:
       - "3306:3306"
     volumes:
