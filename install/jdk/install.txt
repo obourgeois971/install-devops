@@ -4,3 +4,5 @@ sudo apt install openjdk-NUMERO_VERSION-jdk
 sudo update-alternatives - -config java
 
 tail -f /var/log/syslog
+
+sudo apt install openjdk-8-jdk
