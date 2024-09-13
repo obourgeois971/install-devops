@@ -1,0 +1,18 @@
+docker run -d -p 27017-27019:27017-27019 --name mongodb --restart always mongo:4.0.4
+
+docker exec -it mongodb mongo
+
+
+pour crer un user
+
+docker exec -it mongodb mongo
+
+use admin
+
+db.createUser({
+  user: "myUserAdmin",
+  pwd: "abc123",
+  roles: [{ role: "userAdminAnyDatabase", db: "admin" }]
+})
+
+db.getUsers()
